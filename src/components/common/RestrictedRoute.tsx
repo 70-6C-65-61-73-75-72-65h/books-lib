@@ -13,6 +13,6 @@ export const RestrictedRoute: React.FC<RestrictedRouteProps> = ({
   return getToken() ? (
     <RouteComponent />
   ) : (
-    <Navigate to={Endpoints.AUTH_SIGNIN} replace />
+    <Navigate to={Endpoints.AUTH} replace />
   );
 };

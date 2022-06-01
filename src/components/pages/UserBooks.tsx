@@ -190,7 +190,7 @@ export const UserBooks: React.FC = () => {
       spacing={0}
       direction='column'
       alignItems='center'
-      justifyContent='center'
+      justifyContent='flex-start'
       style={{ minHeight: '100vh' }}
     >
       <Grid item xs={3}>

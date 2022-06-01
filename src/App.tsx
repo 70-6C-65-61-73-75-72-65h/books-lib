@@ -69,7 +69,7 @@ function App() {
             path={Endpoints.BOOKS}
             element={<RestrictedRoute component={Books} />}
           />
-          <Route path={Endpoints.AUTH_SIGNIN} element={<Auth />} />
+          <Route path={Endpoints.AUTH} element={<Auth />} />
           <Route
             path={Endpoints.MAIN}
             element={<RestrictedRoute component={SingleUser} />}

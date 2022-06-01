@@ -4,21 +4,9 @@ import {
   isRejectedAction,
 } from 'src/utils/rtk.helpers';
 import { AxiosResponse } from 'axios';
-import {
-  createAsyncThunk,
-  createSlice,
-  isFulfilled,
-  isPending,
-  isRejected,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { BookApi } from '../../api';
-import {
-  Book,
-  CreateBookDTO,
-  UpdateBookActionProps,
-  UpdateBookDTO,
-} from '../../types/Book';
+import { Book, CreateBookDTO, UpdateBookActionProps } from '../../types/Book';
 import { Nullable } from '../../types/globalTypes';
 import { RootState } from '../storeTypes';
 

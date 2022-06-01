@@ -1,13 +1,13 @@
 import { AxiosResponse } from 'axios';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { UserApi } from 'src/api/user/UserApi';
 import {
   UpdateUserActionProps,
   UpdateUserBooksActionProps,
   User,
 } from 'src/types/User';
 import { Book } from 'src/types/Book';
+import { UserApi } from 'src/api';
 
 import { Nullable } from '../../types/globalTypes';
 import { RootState } from '../storeTypes';

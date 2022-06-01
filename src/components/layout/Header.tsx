@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
   const { isAuthinticated } = useSelector(authSelector);
 
   useEffect(() => {
-    if (!isAuthinticated && !getToken()) navigate(Endpoints.AUTH_SIGNIN);
+    if (!isAuthinticated && !getToken()) navigate(Endpoints.AUTH);
     if (getToken() && !isAuthinticated) dispatch(renewIsAuth());
   }, [isAuthinticated, navigate, dispatch]);
 
@@ -34,10 +34,7 @@ export const Header: React.FC = () => {
               Logout
             </Button>
           ) : (
-            <Button
-              color='inherit'
-              onClick={() => navigate(Endpoints.AUTH_SIGNIN)}
-            >
+            <Button color='inherit' onClick={() => navigate(Endpoints.AUTH)}>
               Login
             </Button>
           )}

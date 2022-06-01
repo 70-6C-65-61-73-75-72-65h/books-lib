@@ -12,6 +12,7 @@ export enum Endpoints {
   SINGLE_GENRE_CREATE = '/genres/create',
   SINGLE_GENRE = '/genres/:id',
   GENRES = '/genres',
+  AUTH = '/auth',
   AUTH_SIGNUP = '/signup',
   AUTH_SIGNIN = '/signin',
   MAIN = '/',

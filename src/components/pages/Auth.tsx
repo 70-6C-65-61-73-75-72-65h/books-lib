@@ -1,17 +1,15 @@
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useState } from 'react';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Button,
   FormControl,
-  FormHelperText,
   Grid,
   IconButton,
-  Input,
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  TextField,
+  Typography,
 } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
@@ -26,6 +24,12 @@ interface State {
   showPassword: boolean;
   isSignUp: boolean;
 }
+const initialState: State = {
+  email: '',
+  password: '',
+  showPassword: false,
+  isSignUp: false,
+};
 
 export const Auth: React.FC = () => {
   const navigate = useNavigate();
@@ -74,7 +78,7 @@ export const Auth: React.FC = () => {
     >
       <form onSubmit={onSubmit}>
         <Grid item xs={3}>
-          <FormControl sx={{ m: 1, width: '25ch' }} variant='outlined'>
+          <FormControl sx={{ m: 1, width: 300 }} variant='outlined'>
             <InputLabel htmlFor='outlined-ademail'>Email</InputLabel>
 
             <OutlinedInput
@@ -87,7 +91,7 @@ export const Auth: React.FC = () => {
           </FormControl>
         </Grid>{' '}
         <Grid item xs={3}>
-          <FormControl sx={{ m: 1, width: '25ch' }} variant='outlined'>
+          <FormControl sx={{ m: 1, width: 300 }} variant='outlined'>
             <InputLabel htmlFor='outlined-adornment-password'>
               Password
             </InputLabel>
@@ -114,7 +118,33 @@ export const Auth: React.FC = () => {
           </FormControl>
         </Grid>{' '}
         <Grid item xs={3}>
-          <Button type='submit'>Login</Button>
+          <Button
+            style={{
+              maxWidth: '300px',
+              minWidth: '300px',
+            }}
+            type='submit'
+          >
+            {values.isSignUp ? 'Sign Up' : 'Login'}
+          </Button>
+          {!values.isSignUp && (
+            <Typography
+              sx={{ m: 1 }}
+              width={300}
+              variant='body2'
+              color='text.secondary'
+            >
+              Not Registered Yet?{' '}
+              <Button
+                style={{
+                  width: '160px',
+                }}
+                onClick={() => setValues({ ...initialState, isSignUp: true })}
+              >
+                SignUp
+              </Button>
+            </Typography>
+          )}
         </Grid>{' '}
       </form>
     </Grid>

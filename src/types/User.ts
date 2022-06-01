@@ -1,6 +1,4 @@
 import { Book, UpdateBookDTO } from './Book';
-import { Genre } from './Genre';
-import { Nullable } from './globalTypes';
 
 export interface User {
   email: string;
@@ -24,12 +22,6 @@ export interface UserBooks {
 
 export interface UserBookDTO extends UpdateBookDTO {
   id: number;
-  // name: string;
-  // rate: number;
-  // year: string;
-  // description: string;
-  // directorid: Nullable<number>;
-  // genres: Genre[];
 }
 
 export interface UpdateUserBooksDTO {
