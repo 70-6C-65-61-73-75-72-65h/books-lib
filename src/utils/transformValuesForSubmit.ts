@@ -31,13 +31,5 @@ export const transformBookValuesForSubmit = (
 export const transformUserBooksValuesForSubmit = (
   values: Book,
 ): UserBookDTO => {
-  return {
-    id: values.id,
-    name: values.name,
-    directorid: values.DirectorId,
-    rate: values.rate,
-    year: values.year,
-    description: values.description,
-    genres: values.Genres.map((genre) => genre.id),
-  };
+  return values.id;
 };

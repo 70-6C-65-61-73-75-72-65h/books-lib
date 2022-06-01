@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
+  GetUserBooksDTO,
   UpdateUserActionProps,
   UpdateUserBooksActionProps,
   User,
@@ -19,7 +20,7 @@ export interface InitialUserState {
 }
 
 export interface InitialUserBooksState {
-  data: Nullable<Book[]>;
+  data: Nullable<number[]>;
   isLoading: boolean;
   error: string;
 }
@@ -54,12 +55,12 @@ export const editUser = createAsyncThunk<
   UpdateUserActionProps
 >('user/edit', async ({ body }) => await UserApi.editSelf(body));
 
-export const getUserBooks = createAsyncThunk<AxiosResponse<Book[]>, void>(
-  'user/getBooks',
-  async () => await UserApi.getMyBooks(),
-);
+export const getUserBooks = createAsyncThunk<
+  AxiosResponse<GetUserBooksDTO>,
+  void
+>('user/getBooks', async () => await UserApi.getMyBooks());
 export const editUserBooks = createAsyncThunk<
-  AxiosResponse<Book[]>,
+  AxiosResponse<GetUserBooksDTO>,
   UpdateUserBooksActionProps
 >('user/editBooks', async ({ body }) => await UserApi.editMyBooks(body));
 
@@ -72,7 +73,7 @@ export const userSlice = createSlice({
         state.user = userInitialState;
       }
     },
-    resetUserBooks(state, { payload }: PayloadAction<Nullable<Book[]>>) {
+    resetUserBooks(state, { payload }: PayloadAction<Nullable<number[]>>) {
       if (payload !== null) {
         state.userBooks = userBooksInitialState;
       }
@@ -102,7 +103,9 @@ export const userSlice = createSlice({
       state.userBooks.isLoading = true;
     });
     builder.addCase(getUserBooks.fulfilled, (state, action) => {
-      state.userBooks.data = action.payload.data;
+      state.userBooks.data = action.payload.data.Books.map(
+        (book) => book.UserBook.BookId,
+      );
       state.userBooks.error = '';
       state.userBooks.isLoading = false;
     });
@@ -111,7 +114,9 @@ export const userSlice = createSlice({
       state.userBooks.isLoading = true;
     });
     builder.addCase(editUserBooks.fulfilled, (state, action) => {
-      state.userBooks.data = action.payload.data;
+      state.userBooks.data = action.payload.data.Books.map(
+        (book) => book.UserBook.BookId,
+      );
       state.userBooks.error = '';
       state.userBooks.isLoading = false;
     });

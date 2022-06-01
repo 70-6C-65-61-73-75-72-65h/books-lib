@@ -20,9 +20,7 @@ export interface UserBooks {
   books: Book[];
 }
 
-export interface UserBookDTO extends UpdateBookDTO {
-  id: number;
-}
+export type UserBookDTO = number;
 
 export interface UpdateUserBooksDTO {
   books: UserBookDTO[];
@@ -30,4 +28,29 @@ export interface UpdateUserBooksDTO {
 
 export interface UpdateUserBooksActionProps {
   body: UpdateUserBooksDTO;
+}
+
+export interface GetSingleUserBookDTO {
+  DirectorId: number;
+  UserBook: {
+    BookId: number;
+    UserId: number;
+    createdAt: string;
+    updatedAt: string;
+    id: number;
+  };
+  description: string;
+  id: number;
+  name: string;
+  rate: number;
+  year: number;
+}
+
+export interface GetUserBooksDTO {
+  id: number;
+  password: number;
+  email: string;
+  updatedAt: string;
+  createdAt: string;
+  Books: GetSingleUserBookDTO[];
 }

@@ -160,10 +160,11 @@ export const UserBooks: React.FC = () => {
 
   useEffect(() => {
     if (!myBooks && !isMyBooksLoading) dispatch(getUserBooks());
-    return () => {
-      dispatch(resetUserBooks(myBooks));
-    };
-  }, [myBooks, isMyBooksLoading, dispatch]);
+    if (myBooks && books)
+      setSelectedUserBooks(
+        books.filter((book) => myBooks.some((myBook) => myBook === book.id)),
+      );
+  }, [myBooks, isMyBooksLoading, dispatch, books]);
 
   useEffect(() => {
     if (!directors && !isLoadingDirectors) dispatch(getDirectors());
